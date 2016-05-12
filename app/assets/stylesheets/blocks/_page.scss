@@ -1,0 +1,25 @@
+.episode-title {
+  max-width: $content-width-small + 60px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 25px 0;
+  text-align: center;
+  font-size: 24px;
+  border-bottom: 2px solid $greyscale-9;
+}
+
+.episodes-container {
+  width: 100%;
+  margin: 40px auto 0;
+}
+
+.episodes-category {
+  width: $content-width;
+  padding: 0 0 20px;
+  margin: 0 auto 40px;
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: .6px;
+  border-bottom: 1px solid $greyscale-2;
+}

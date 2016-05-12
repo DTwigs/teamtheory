@@ -1,0 +1,50 @@
+.bookmarks-container {
+  position: relative;
+  width: 100%;
+  max-width: $content-width-small;
+  margin: 0 auto;
+  border-left: 2px solid $greyscale-9;
+  font-family: consolas;
+}
+
+.bookmark {
+  position: relative;
+  padding: 12px 0 12px 25px;
+  margin: 0;
+  color: $greyscale-1;
+  border-bottom: 1px solid $greyscale-9;
+  cursor: pointer;
+}
+
+.bookmark:hover {
+  font-weight: 700;
+}
+
+.bookmark:last-child {
+  border-bottom: none;
+}
+
+.bookmark::before {
+  content: ' ';
+  position: absolute;
+  width: 12px;
+  height: 3px;
+  left: 0;
+  top: 15px;
+  border-bottom: 1px solid $greyscale-9;
+}
+
+.bookmark.highlight {
+  color: $brand2;
+  font-weight: 700;
+}
+
+.bookmark.highlight::before {
+  top: 12px;
+  border-bottom: 3px solid $greyscale-9;
+}
+
+.bookmark__timestamp {
+  float: right;
+  color: $greyscale-7;
+}

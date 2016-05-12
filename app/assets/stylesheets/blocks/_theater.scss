@@ -1,0 +1,13 @@
+.theater {
+  position: relative;
+  width: 100%;
+  background: $brand1-black;
+}
+
+.theater-screen {
+  position: relative;
+  background-color: $greyscale-7;
+  width: 640px;
+  height: 390px;
+  margin: 0 auto;
+}

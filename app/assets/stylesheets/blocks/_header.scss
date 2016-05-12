@@ -1,0 +1,73 @@
+.header {
+  position: fixed;
+  top: 0;
+  z-index: 3;
+  width: 100%;
+  height: 74px;
+  font-family: arial;
+  background-color: $greyscale-11;
+  border-bottom: 1px solid $greyscale-9;
+  box-shadow:0 0 5px $greyscale-1;
+
+  &__logo {
+    display: inline-block;
+    line-height: 74px;
+    padding: 0 20px;
+    height: 100%;
+    font-size: 16px;
+    font-weight: 700;
+    color: $greyscale-1;
+    letter-spacing: .6px;
+  }
+
+  &__logo-icon {
+    position: relative;
+    top: -2px;
+    display: inline-block;
+    vertical-align: middle;
+    height: 34px;
+    width: 34px;
+    margin: 0 8px 0 0;
+    border-radius: 50%;
+    background-color: $brand1;
+    font-weight: 700;
+    color: $greyscale-11;
+    text-align: center;
+    line-height: 1;
+    font-size: 60px;
+    text-indent: -1px;
+  }
+}
+
+.header-menu {
+  display: inline-block;
+
+  &--right {
+    display: inline-block;
+    float: right;
+  }
+
+  &__item {
+    display: inline-block;
+    height: 100%;
+  }
+
+  &__link {
+    display: inline-block;
+    height: 100%;
+    padding: 0 20px;
+    line-height: 74px;
+    font-size: 14px;
+    color: $greyscale-1;
+    letter-spacing: .2px;
+
+    &:hover {
+      color: $brand1;
+    }
+  }
+}
+
+.header-placeholder {
+  width: 100%;
+  height: 74px;
+}
