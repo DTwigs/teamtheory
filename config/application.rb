@@ -38,14 +38,5 @@ module Teamtheory
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
-    # Precompile javascripts
-    config.assets.precompile = [ Proc.new { |path| !%w(.js .css).include?(File.extname(path)) } ]
-    config.assets.precompile += %w( admin.js vendor_lib.js vendor_lib_v2.js application.js application_v2.js dynamic/* polyfills/* )
-    config.assets.precompile += Dir.glob(Rails.root.join('app/assets/javascripts/dynamic/*.coffee')).map { |f| 'dynamic/' + File.basename(f, '.coffee') }
-
-    # Precompile stylesheets
-    config.assets.precompile += %w( application.css application_v2.css ie9.css admin.css )
-    config.assets.precompile += Dir.glob(Rails.root.join('app/assets/stylesheets/sections/*.scss')).map { |f| 'sections/' + File.basename(f, '.scss') }
-
   end
 end

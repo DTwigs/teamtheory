@@ -1,0 +1,46 @@
+.theater
+  .theater-screen
+    .theater-player#player
+    .theater-helper
+      a.theater-helper__image href="http://simpleradar.com" target="_blank"
+        = image_tag 'dust2.jpg', class: 'theater-helper__image'
+
+.content
+  h2.episode-title
+    | Offensive: Mirage A Site
+
+  = react_component('Bookmarks')
+
+  ul.bookmarks-container
+    li#bookmark1.bookmark
+      | Mirage A Site: Smokes, Molly, Flash
+      span.bookmark__timestamp 1:22
+    li#bookmark2.bookmark
+      | Smoke: Stairs
+      span.bookmark__timestamp 1:22
+    li#bookmark3.bookmark
+      | Smoke: CT
+      span.bookmark__timestamp 1:22
+    li#bookmark4.bookmark
+      | Smoke: Jungle/Connector
+      span.bookmark__timestamp 1:22
+    li#bookmark5.bookmark
+      | Flash: Entry
+      span.bookmark__timestamp 1:22
+    li#bookmark6.bookmark
+      | Molotov: Under Palace
+      span.bookmark__timestamp 1:22
+    li#bookmark7.bookmark
+      | Angles to deal with when entering A
+      span.bookmark__timestamp 1:22
+    li#bookmark8.bookmark
+      | Tetris Hold
+      span.bookmark__timestamp 1:22
+    li#bookmark9.bookmark
+      | The Ground Push: Various ways to push on A site
+      span.bookmark__timestamp 1:22
+
+
+= content_for :js_lower do
+  javascript:
+    TT.videoPlayer();

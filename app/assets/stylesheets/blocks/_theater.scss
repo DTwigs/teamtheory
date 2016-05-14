@@ -1,13 +1,36 @@
 .theater {
   position: relative;
   width: 100%;
-  background: $brand1-black;
+  background: black;
 }
 
 .theater-screen {
   position: relative;
+  min-width: 650px;
+  max-width: 1400px;
+  height: 505px;
+  margin: 0 auto;
+}
+
+.theater-player {
   background-color: $greyscale-7;
-  width: 640px;
-  height: 390px;
+}
+
+.theater-player, .theater-helper, .theater-list {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.theater-player {
+  width: 64%
+}
+
+.theater-helper {
+  width: 35%;
+}
+
+.theater-helper__image {
+  display: block;
+  height: 100%;
   margin: 0 auto;
 }

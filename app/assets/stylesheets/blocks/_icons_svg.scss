@@ -1,0 +1,29 @@
+.icon-path--white {
+  stroke: #FFF;
+  fill: #FFF;
+  stroke-miterlimit: 10;
+  stroke-width: 0;
+}
+
+.icon-path--black {
+  stroke: #000;
+  fill: #000;
+  stroke-miterlimit: 10;
+  stroke-width: 0;
+}
+
+.icon-path--transparent {
+  stroke: #FFF;
+  fill: #FFF;
+  stroke-miterlimit: 10;
+  stroke-width: 0;
+  opacity: .5;
+}
+
+.icon-circle {
+  width: 28px;
+  height: 28px;
+  background-color: #000;
+  border-radius: 50%;
+  padding: 1px;
+}
