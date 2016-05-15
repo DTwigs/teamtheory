@@ -6,6 +6,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+superuser = Role.create(:id => 1, :identifier => "superuser")
+admin = Role.create(:id => 2, :identifier => "admin")
+community_user = Role.create(:id => 3, :identifier => "community_user")
 g = Game.create({short_name: 'CS:GO', long_name: 'Counter-Strike: Global Offensive'})
 i = Instructor.create({name: 'Anarchay'})
 v = Video.create({game: g, youtube_id: 'scxS-MK3HMo', title: 'How To Execute Mirage A', description: 'A quick video describing a straight forward ramp and palace A take on Mirage', duration: '5:25', instructor: i})
