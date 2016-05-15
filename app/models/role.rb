@@ -6,7 +6,7 @@ class Role < ActiveRecord::Base
   end
 
   def admin?
-    if self.identifier == "admin" || "superuser"
+    if self.identifier == ("admin" || "superuser")
       true
     else
       false

@@ -7,7 +7,6 @@ class AdminController < ApplicationController
 
   private 
   def authorize_admin
-    binding.pry
     unless admin?
       redirect_to root_path
       flash[:notice] = "You are not an admin"
