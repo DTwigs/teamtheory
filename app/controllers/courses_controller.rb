@@ -6,5 +6,6 @@ class CoursesController < ApplicationController
   def show
     @video = Video.find(params[:id])
     @bookmarks = @video.video_bookmarks.to_json
+    @bookmarkTypes = VideoBookmarkType.all.to_json
   end
 end

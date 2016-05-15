@@ -1,23 +1,31 @@
 .icon-path--white {
-  stroke: #FFF;
-  fill: #FFF;
+  stroke: white;
+  fill: white;
   stroke-miterlimit: 10;
   stroke-width: 0;
 }
 
 .icon-path--black {
-  stroke: #000;
-  fill: #000;
+  stroke: $brand1;
+  fill: $brand1;
   stroke-miterlimit: 10;
   stroke-width: 0;
 }
 
-.icon-path--transparent {
+.icon-path--transparent--white {
   stroke: #FFF;
   fill: #FFF;
   stroke-miterlimit: 10;
   stroke-width: 0;
-  opacity: .5;
+  opacity: .4;
+}
+
+.icon-path--transparent--black {
+  stroke: #000;
+  fill: #000;
+  stroke-miterlimit: 10;
+  stroke-width: 0;
+  opacity: .3;
 }
 
 .icon-circle {
@@ -26,4 +34,8 @@
   background-color: #000;
   border-radius: 50%;
   padding: 1px;
+}
+
+.icon-tilted {
+  transform: rotate(-45deg);
 }

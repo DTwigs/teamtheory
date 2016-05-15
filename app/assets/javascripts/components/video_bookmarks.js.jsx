@@ -3,7 +3,7 @@
 class VideoBookmarks extends React.Component {
   constructor (props) {
     super(props);
-    videoBookmarksStore.init(this.props.bookmarks);
+    videoBookmarksStore.init(this.props.bookmarks, this.props.types);
     this.state = this.getBookmarksState();
   }
 
@@ -30,7 +30,7 @@ class VideoBookmarks extends React.Component {
       let bookmarks = [],
         allBookmarks = this.state.allBookmarks;
       for (var id in allBookmarks) {
-        bookmarks.push((<VideoBookmark bookmark={allBookmarks[id]} key={id}></VideoBookmark>));
+        bookmarks.push((<VideoBookmark bookmark={allBookmarks[id]} key={id} types={videoBookmarksStore.getBookmarkTypes()}></VideoBookmark>));
       }
       return bookmarks;
     };
@@ -69,10 +69,47 @@ class VideoBookmark extends React.Component {
     TT.videoPlayer.setVideoTime(this.props.bookmark.time);
   }
 
+  getIcon () {
+    let iconType;
+
+    if (this.props.bookmark.video_bookmark_type_id) {
+      iconType = this.props.types[this.props.bookmark.video_bookmark_type_id].identifier.toLowerCase();
+    }
+
+    switch (iconType) {
+      case "smoke":
+        return (
+          <div className="bookmark__icon-container icon-tilted">
+            <IconSmoke></IconSmoke>
+          </div>
+        );
+        break;
+      case "flash":
+        return (
+          <div className="bookmark__icon-container icon-tilted">
+            <IconFlash></IconFlash>
+          </div>
+        );
+        break;
+      case "fire":
+        return (
+          <div className="bookmark__icon-container icon-tilted">
+            <IconFire></IconFire>
+          </div>
+        );
+        break;
+      default:
+        return (
+          <div className="bookmark__empty-container"></div>
+        );
+    }
+  }
+
   render () {
     let boundClick = this.changeVideoTime.bind(this);
     return (
       <li className={this.bookmarkClasses()} id={this.bookmarkId()} onClick={boundClick}>
+        {this.getIcon()}
         {this.props.bookmark.description}
         <span className="bookmark__timestamp">{this.formattedTime()}</span>
       </li>
@@ -80,14 +117,57 @@ class VideoBookmark extends React.Component {
   }
 }
 
+class ActiveVideoBookmark extends React.Component {
+  constructor (props) {
+    super(props);
+    this.state = this.getActiveBookmarkState();
+  }
+
+  getActiveBookmarkState () {
+    return {
+      bookmark: videoBookmarksStore.getActiveBookmark()
+    };
+  }
+
+  _onChange () {
+    this.setState(this.getActiveBookmarkState());
+  }
+
+  _changeVideoTime () {
+    TT.videoPlayer.setVideoTime(this.state.bookmark.time);
+  }
+
+  componentDidMount () {
+    videoBookmarksStore.addChangeListener(this._onChange.bind(this));
+  }
+
+  componentWillUnmount () {
+    videoBookmarksStore.removeChangeListener(this._onChange.bind(this));
+  }
+
+  render () {
+    if (this.state.bookmark) {
+      let boundClick = this._changeVideoTime.bind(this);
+      return (
+        <div onClick={boundClick}>
+          {this.state.bookmark.description}
+        </div>
+      );
+    }
+  }
+}
+
 var videoBookmarksStore = (function () {
   const CHANGE_EVENT = 'bookmarks_change'
 
   let _bookmarks = {};
+  let _activeBookmark = {};
+  let _bookmarkTypes = {};
 
-  let init = function(bookmarks) {
+  let init = function(bookmarks, bookmarkTypes) {
     bookmarks = _sortByTime(bookmarks);
     bookmarks.forEach(create);
+    _createTypesObject(bookmarkTypes);
     $(document).on(TT.videoPlayer.TIMECHANGE_EVENT, findClosestBookmark);
   }
 
@@ -96,7 +176,8 @@ var videoBookmarksStore = (function () {
       id: bookmark.id,
       active: false,
       time: bookmark.time_in_seconds,
-      description: bookmark.description
+      description: bookmark.description,
+      video_bookmark_type_id: bookmark.video_bookmark_type_id
     }
     _addBookmarkEvents(_bookmarks[bookmark.id]);
   }
@@ -105,10 +186,25 @@ var videoBookmarksStore = (function () {
     return _bookmarks;
   }
 
+  let getActiveBookmark = function () {
+    return _activeBookmark;
+  }
+
+  let getBookmarkTypes = function() {
+    return _bookmarkTypes;
+  }
+
   let setActive = function(event) {
     _inactivateAllBookmarks();
-    _bookmarks[event.data.id].active = true;
-    _emitChange()
+    _activeBookmark = _bookmarks[event.data.id];
+    _activeBookmark.active = true;
+    _emitChange();
+  }
+
+  let _createTypesObject = function(types) {
+    types.forEach(function(t) {
+      _bookmarkTypes[t.id] = t;
+    });
   }
 
   let _inactivateAllBookmarks = function() {
@@ -183,6 +279,8 @@ var videoBookmarksStore = (function () {
     create: create,
     getAll: getAll,
     setActive: setActive,
+    getActiveBookmark: getActiveBookmark,
+    getBookmarkTypes: getBookmarkTypes,
     addChangeListener: addChangeListener,
     removeChangeListener: removeChangeListener
   };

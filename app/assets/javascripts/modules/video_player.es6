@@ -1,7 +1,9 @@
 TT.videoPlayer = (function() {
   const TIMECHANGE_EVENT = 'tt:videoplayer:timechange_event';
+  let youtubeId = "";
 
-  function init() {
+  function init(yid) {
+    youtubeId = yid;
     var tag = document.createElement('script');
 
     tag.src = "https://www.youtube.com/iframe_api";
@@ -15,7 +17,7 @@ TT.videoPlayer = (function() {
     player = new YT.Player('player', {
       height: '505',
       width: '853',
-      videoId: 'scxS-MK3HMo',
+      videoId: youtubeId,
       events: {
         'onReady': _onPlayerReady,
         'onStateChange': _onPlayerStateChange
