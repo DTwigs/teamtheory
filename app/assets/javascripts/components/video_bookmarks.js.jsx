@@ -1,20 +1,20 @@
 
 
-function getBookmarksState() {
-  return {
-    allBookmarks: videoBookmarksStore.getAll()
-  };
-}
-
 class VideoBookmarks extends React.Component {
   constructor (props) {
     super(props);
     videoBookmarksStore.init(this.props.bookmarks);
-    this.state = getBookmarksState();
+    this.state = this.getBookmarksState();
+  }
+
+  getBookmarksState () {
+    return {
+      allBookmarks: videoBookmarksStore.getAll()
+    };
   }
 
   _onChange () {
-    this.setState(getBookmarksState());
+    this.setState(this.getBookmarksState());
   }
 
   componentDidMount () {
@@ -65,9 +65,14 @@ class VideoBookmark extends React.Component {
     return "bookmark";
   }
 
+  changeVideoTime () {
+    TT.videoPlayer.setVideoTime(this.props.bookmark.time);
+  }
+
   render () {
+    let boundClick = this.changeVideoTime.bind(this);
     return (
-      <li className={this.bookmarkClasses()} id={this.bookmarkId()}>
+      <li className={this.bookmarkClasses()} id={this.bookmarkId()} onClick={boundClick}>
         {this.props.bookmark.description}
         <span className="bookmark__timestamp">{this.formattedTime()}</span>
       </li>

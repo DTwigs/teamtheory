@@ -59,14 +59,15 @@ TT.videoPlayer = (function() {
     player.stopVideo();
   }
 
-  function setVideo() {
-
+  function setVideoTime(seconds) {
+    player.seekTo(seconds);
+    $(document).trigger(getEventName(seconds));
   }
 
   return {
     TIMECHANGE_EVENT: TIMECHANGE_EVENT,
     stopVideo: stopVideo,
-    setVideo: setVideo,
+    setVideoTime: setVideoTime,
     getEventName: getEventName,
     init: init
   }
