@@ -6,4 +6,12 @@ class User < ActiveRecord::Base
          :confirmable 
          # :omniauthable
   belongs_to :role
+
+  before_save :set_role
+
+  private
+
+  def set_role
+    self.role = Role.find(3)
+  end
 end
