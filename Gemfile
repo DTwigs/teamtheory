@@ -25,6 +25,10 @@ gem 'react-rails'
 gem 'momentjs-rails'
 gem "slim-rails"
 
+gem 'devise'
+gem 'cancan'
+gem 'omniauth'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
