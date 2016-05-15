@@ -34,12 +34,12 @@
   border-bottom: 1px solid $greyscale-9;
 }
 
-.bookmark.highlight {
+.bookmark--highlight {
   color: $brand2;
   font-weight: 700;
 }
 
-.bookmark.highlight::before {
+.bookmark--highlight::before {
   top: 12px;
   border-bottom: 3px solid $greyscale-9;
 }

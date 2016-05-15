@@ -14,7 +14,9 @@
 //= require jquery_ujs
 //= require react
 //= require react_ujs
-//= require components
+//= require moment
+
 
 //= require 'base.js'
+//= require components
 //= require_tree './modules'
