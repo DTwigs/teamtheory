@@ -1,17 +1,19 @@
 .episodes-container.content
   h3.episodes-category
-    | All CS:GO Videos
+    | All
+    span<> = @game.short_name
+    | Videos
   ul.episodes-list
-    li.episode-card
-      a.episode-card__link href="/courses/1"
-        .episode-card__thumbnail
-        .episode-card__body
-          .episode-card__title
-            | Offensive: Mirage A Site
-          .episode-card__author
-            a href="youtube.com"
+    - @videos.each do |v|
+      li.episode-card
+        a.episode-card__link href="/courses/#{v.id}"
+          .episode-card__thumbnail
+          .episode-card__body
+            .episode-card__title
+              = v.title
+            .episode-card__author
               svg aria-hidden="true" class="episode-card__author-icon" height="16" version="1.1" viewBox="0 0 14 16" width="14"
                 path d="M0 12v3h3l8-8-3-3L0 12z m3 2H1V12h1v1h1v1z m10.3-9.3l-1.3 1.3-3-3 1.3-1.3c0.39-0.39 1.02-0.39 1.41 0l1.59 1.59c0.39 0.39 0.39 1.02 0 1.41z"
-              | Anarchay
+              = v.instructor.name
 
-          .episode-card__duration 12:33
+            .episode-card__duration = v.duration

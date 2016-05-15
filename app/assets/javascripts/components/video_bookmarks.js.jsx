@@ -84,10 +84,8 @@ var videoBookmarksStore = (function () {
   const CHANGE_EVENT = 'bookmarks_change'
 
   let _bookmarks = {};
-  let bookmarksArray = [];
 
   let init = function(bookmarks) {
-    bookmarksArray = bookmarks.slice(0);
     bookmarks = _sortByTime(bookmarks);
     bookmarks.forEach(create);
     $(document).on(TT.videoPlayer.TIMECHANGE_EVENT, findClosestBookmark);
@@ -97,10 +95,10 @@ var videoBookmarksStore = (function () {
     _bookmarks[bookmark.id] = {
       id: bookmark.id,
       active: false,
-      time: bookmark.time,
+      time: bookmark.time_in_seconds,
       description: bookmark.description
     }
-    _addBookmarkEvents(bookmark);
+    _addBookmarkEvents(_bookmarks[bookmark.id]);
   }
 
   let getAll = function() {
@@ -162,12 +160,18 @@ var videoBookmarksStore = (function () {
     _removeAllBookmarkEvents();
   }
 
-  let findClosestBookmark = function(e) {
-    let currTime = e.data;
-    var reverse = bookmarksArray.slice(0).reverse();
-    for(var i = 0; i < reverse.length; i++) {
-      if (reverse[i].time <= currTime) {
-        setActive({data: reverse[i]});
+  let findClosestBookmark = function(e, currTime) {
+    // let currTime = e.data;
+
+    for (var id in _bookmarks) {
+      id = parseInt(id);
+      if (_bookmarks[id].time > currTime) {
+        let activeBookmark = _bookmarks[id - 1];
+        setActive({data: activeBookmark});
+        return true;
+      } else if (!_bookmarks[id + 1]) { // last bookmark
+        let activeBookmark = _bookmarks[id];
+        setActive({data: activeBookmark});
         return true;
       }
     }
