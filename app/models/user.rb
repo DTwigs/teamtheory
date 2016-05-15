@@ -7,11 +7,11 @@ class User < ActiveRecord::Base
          # :omniauthable
   belongs_to :role
 
-  before_save :set_role
+  before_save :set_default_role
 
   private
 
-  def set_role
-    self.role = Role.find(3)
+  def set_default_role
+    self.role = Role.find_by identifier: "community_user"
   end
 end
