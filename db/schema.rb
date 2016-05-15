@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160514230102) do
+ActiveRecord::Schema.define(version: 20160515000229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,12 +25,6 @@ ActiveRecord::Schema.define(version: 20160514230102) do
 
   create_table "instructors", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "tags", force: :cascade do |t|
-    t.string   "identifier"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -82,6 +76,12 @@ ActiveRecord::Schema.define(version: 20160514230102) do
     t.datetime "updated_at"
   end
 
+  create_table "video_tags", force: :cascade do |t|
+    t.string   "identifier"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "videos", force: :cascade do |t|
     t.string   "youtube_id"
     t.string   "description"
@@ -89,11 +89,16 @@ ActiveRecord::Schema.define(version: 20160514230102) do
     t.string   "duration"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "tag_id"
     t.integer  "instructor_id"
-    t.integer  "video_bookmark_id"
-    t.integer  "video_resource_id"
     t.integer  "game_id"
   end
+
+  create_table "videos_tags", id: false, force: :cascade do |t|
+    t.integer "video_tag_id"
+    t.integer "video_id"
+  end
+
+  add_index "videos_tags", ["video_id"], name: "index_videos_tags_on_video_id", using: :btree
+  add_index "videos_tags", ["video_tag_id"], name: "index_videos_tags_on_video_tag_id", using: :btree
 
 end
