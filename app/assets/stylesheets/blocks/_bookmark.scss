@@ -9,7 +9,7 @@
 
 .bookmark {
   position: relative;
-  padding: 14px 0 14px 32px;
+  padding: 14px 0 14px 25px;
   margin: 0;
   color: $greyscale-1;
   cursor: pointer;
@@ -24,24 +24,9 @@
   border-bottom: none;
 }
 
-.bookmark::before {
-  content: ' ';
-  position: absolute;
-  width: 20px;
-  height: 3px;
-  left: 0;
-  top: 18px;
-  border-bottom: 1px solid $greyscale-9;
-}
-
 .bookmark--highlight {
   color: $brand2;
   font-weight: 700;
-}
-
-.bookmark--highlight::before {
-  top: 17px;
-  border-bottom: 3px solid $brand1;
 }
 
 .bookmark__timestamp {
