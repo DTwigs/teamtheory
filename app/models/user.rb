@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
          # :omniauthable
   belongs_to :role
 
-  before_save :set_default_role
+  after_initialize :set_default_role
 
   private
 
