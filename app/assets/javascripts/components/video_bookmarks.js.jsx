@@ -129,6 +129,16 @@ class ActiveVideoBookmark extends React.Component {
     };
   }
 
+  getIconType () {
+    let types = videoBookmarksStore.getBookmarkTypes()
+
+    if (this.state.bookmark.video_bookmark_type_id) {
+      return types[this.state.bookmark.video_bookmark_type_id].identifier.toLowerCase();
+    }
+
+    return null;
+  }
+
   _onChange () {
     this.setState(this.getActiveBookmarkState());
   }
@@ -145,13 +155,47 @@ class ActiveVideoBookmark extends React.Component {
     videoBookmarksStore.removeChangeListener(this._onChange.bind(this));
   }
 
+  getIcon () {
+    let iconType = this.getIconType();
+
+    switch (iconType) {
+      case "smoke":
+        return (
+          <IconSmoke dark={true}></IconSmoke>
+        );
+        break;
+      case "flash":
+        return (
+          <IconFlash dark={true}></IconFlash>
+        );
+        break;
+      case "fire":
+        return (
+          <IconFire dark={true}></IconFire>
+        );
+        break;
+    }
+  }
+
   render () {
     if (this.state.bookmark) {
       let boundClick = this._changeVideoTime.bind(this);
       return (
-        <a className="theater-helper__link" onClick={boundClick}>
-          {this.state.bookmark.description}
-        </a>
+        <div className="theater-controls">
+          <div className="theater-controls__icon">
+            {this.getIcon()}
+          </div>
+          <div className="theater-controls__control">
+            <label className="theater-helper__text-label">
+              Current Step
+            </label>
+            <div className="theater-helper__text">
+              <a className="theater-helper__link" onClick={boundClick}>
+                {this.state.bookmark.description}
+              </a>
+            </div>
+          </div>
+        </div>
       );
     }
   }
