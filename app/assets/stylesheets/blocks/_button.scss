@@ -4,7 +4,7 @@
   height: 36px;
   line-height: 36px;
   padding: 0 18px;
-  background-color: $greyscale-9;
+  background-color: $greyscale-7;
   color: $greyscale-1;
   -webkit-appearance: none;
   outline: none;
@@ -13,14 +13,18 @@
   font-size: 14px;
   letter-spacing: .4px;
   cursor: pointer;
+  color: white;
 
   &--cta {
     background-color: $brand1;
-    color: white;
   }
 
   &--login {
-    margin: 19px 16px;
+    margin: 19px 5px 19px 16px;
+  }
+
+  &--signup {
+    margin: 19px 16px 19px 5px;
   }
 
   &:hover {

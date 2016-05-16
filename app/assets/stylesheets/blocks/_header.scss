@@ -6,8 +6,13 @@
   height: 74px;
   font-family: arial;
   background-color: $greyscale-11;
-  border-bottom: 1px solid $greyscale-9;
-  box-shadow:0 0 5px $greyscale-1;
+
+  &__inner {
+    background-color: $greyscale-11;
+    border-bottom: 1px solid $greyscale-9;
+    box-shadow:0 0 5px $greyscale-1;
+    vertical-align: top;
+  }
 
   &__logo {
     display: inline-block;
@@ -18,6 +23,7 @@
     font-weight: 700;
     color: $greyscale-1;
     letter-spacing: .6px;
+    vertical-align: top;
 
     &:hover {
       color: $greyscale-1;
@@ -54,6 +60,7 @@
   &__item {
     display: inline-block;
     height: 100%;
+    vertical-align: top;
   }
 
   &__link {

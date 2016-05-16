@@ -149,9 +149,9 @@ class ActiveVideoBookmark extends React.Component {
     if (this.state.bookmark) {
       let boundClick = this._changeVideoTime.bind(this);
       return (
-        <div onClick={boundClick}>
+        <a className="theater-helper__link" onClick={boundClick}>
           {this.state.bookmark.description}
-        </div>
+        </a>
       );
     }
   }

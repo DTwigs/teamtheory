@@ -1,6 +1,6 @@
 .header-placeholder
 header.header
-  .content
+  .header__inner
     a.header__logo href="/"
       .header__logo-icon T
       | Team Theory
@@ -14,8 +14,15 @@ header.header
         a.header-menu__link href="/courses" Courses
 
     ul.header-menu--right
-      li.header-menu__item
-        - if current_user
+      - if current_user
+        li.header-menu__item
           = link_to "Log Out", destroy_user_session_path, :method => :delete, :class => "button button--cta button--login"
-        - else
+      - else
+        li.header-menu__item
           a.button.button--cta.button--login href="/users/sign_in" Log In
+        li.header-menu__item
+          = render 'icons/cs_icon'
+        li.header-menu__item
+          a.button.button--signup href="/users/sign_up" Sign Up
+
+  = render 'layouts/flash_message'

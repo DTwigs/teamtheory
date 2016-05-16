@@ -1,0 +1,50 @@
+@keyframes message-animate-out {
+  0% {
+    opacity: 1;
+    max-height: 50px;
+    padding: 12px 0;
+  }
+  60% {
+    opacity: 1;
+    max-height: 50px;
+    padding: 12px 0;
+  }
+  80% {
+    opacity: 0;
+    max-height: 0px;
+    padding: 0;
+  }
+  100% {
+    display: none;
+    opacity: 0;
+    max-height: 0px;
+    padding: 0;
+  }
+}
+
+.flash-message {
+  display: block;
+  width: 100%;
+  padding: 12px 0;
+  font-weight: 700;
+  font-size: 12px;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+  box-shadow: inset 0px 2px 5px rgba(0, 0, 0, .3);
+}
+
+.flash-message--alert {
+  background-color: $brand2;
+}
+
+.flash-message--notice {
+  background-color: $brand3;
+  // animation: message-animate-out 5s forwards;
+}
+
+.flash-message--info {
+  background-color: $brand3;
+}
