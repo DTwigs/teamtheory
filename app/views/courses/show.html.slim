@@ -3,6 +3,11 @@
     .module-box__header
       h2.module-box__title
         | Offensive: Mirage A Site
+      .module-box__right.module-box__right--center
+        label.label-text
+          | Instructor
+        a.episode-instructor href="/instructor/#{@video.instructor.id}"
+          = @video.instructor.name
 
   .theater
     .theater-screen
@@ -11,15 +16,6 @@
         a.theater-helper__image href="http://simpleradar.com" target="_blank"
           = image_tag 'dust2.jpg', class: 'theater-helper__image'
 
-
-  / .theater-controls
-  /   .theater-controls__icon
-  /     = render 'icons/fire_icon'
-
-  /   .theater-controls__control
-  /     label.theater-helper__text-label
-  /       | Current Step
-  /     #currentBookMark.theater-helper__text
   = react_component('ActiveVideoBookmark', types: JSON.parse(@bookmarkTypes));
 
 

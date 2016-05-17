@@ -1,11 +1,13 @@
-.content {
+.content-small {
   width: 100%;
-  max-width: $content-width;
+  max-width: $content-width-small;
   margin: 0 auto;
+  padding: 25px 0 0;
 }
 
 .content {
   width: 95%;
   max-width: $content-width-wide;
   margin: 0 auto;
+  padding: 25px 0 0;
 }

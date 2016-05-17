@@ -38,13 +38,15 @@
 
 .flash-message--alert {
   background-color: $brand2;
+  animation: message-animate-out 5s forwards;
 }
 
 .flash-message--notice {
   background-color: $brand3;
-  // animation: message-animate-out 5s forwards;
+  animation: message-animate-out 5s forwards;
 }
 
 .flash-message--info {
   background-color: $brand3;
+  animation: message-animate-out 5s forwards;
 }

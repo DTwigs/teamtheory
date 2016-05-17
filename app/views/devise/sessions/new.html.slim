@@ -1,0 +1,25 @@
+.content-small
+  .module-box.module-box--bordered
+    .module-box__header.module-box__header--small
+      h2.module-box__title
+        | Log in
+    .module-box__body
+
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        div class="field"
+          = f.label :email, class: 'label-text'
+          = f.email_field :email, autofocus: true
+
+        div class="field"
+          = f.label :password, class: 'label-text'
+          = f.password_field :password, autocomplete: "off"
+
+        - if devise_mapping.rememberable?
+          div class="field"
+            = f.check_box :remember_me
+            = f.label :remember_me
+
+        div class="actions"
+          = f.submit "Log in"
+
+      = render "devise/shared/links"

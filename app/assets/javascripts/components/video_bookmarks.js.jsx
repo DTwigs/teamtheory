@@ -174,6 +174,10 @@ class ActiveVideoBookmark extends React.Component {
           <IconFire dark={true}></IconFire>
         );
         break;
+      default:
+        return (
+          <div className="bookmark__empty-hobo"></div>
+        );
     }
   }
 
@@ -186,7 +190,7 @@ class ActiveVideoBookmark extends React.Component {
             {this.getIcon()}
           </div>
           <div className="theater-controls__control">
-            <label className="theater-helper__text-label">
+            <label className="label-text">
               Current Step
             </label>
             <div className="theater-helper__text">

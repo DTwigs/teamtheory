@@ -5,7 +5,15 @@
   padding: 25px 0;
   text-align: center;
   font-size: 24px;
-  // border-bottom: 2px solid $greyscale-2;
+}
+
+.episode-instructor {
+  font-size: 18px;
+  font-weight: 700;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: .4px;
+  font-family: consolas;
+  color: $brand1;
 }
 
 .episodes-container {
@@ -25,6 +33,7 @@
 }
 
 .module-box {
+  position: relative;
   display: block;
   background-color: #f9f9f9;
   margin-bottom: 20px;
@@ -46,7 +55,7 @@
   background-color: #f7f7f7;
 
   &--small {
-    font-size: 20px;
+    font-size: 18px;
     padding: 15px;
     border-bottom: 1px solid #e9e9e6;
   }
@@ -72,6 +81,17 @@
     height: 4px;
     background-color: $brand1;
   }
+}
+
+.module-box__right {
+  position: absolute;
+  right: 25px;
+  text-align: right;
+}
+
+.module-box__right--center {
+  top: 50%;
+  margin-top: -18px;
 }
 
 .module-box__body {

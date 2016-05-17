@@ -51,7 +51,17 @@
   height: 13px;
   left: -7px;
   top: 15px;
-  background-color: white;
+  background-color: $brand1;
+  border-radius: 50%;
+  padding: 3px;
+  border: 2px solid $brand1;
+}
+
+.bookmark__empty-hobo {
+  width: 13px;
+  height: 13px;
+  margin: 12px;
+  background-color: $brand1;
   border-radius: 50%;
   padding: 3px;
   border: 2px solid $brand1;
