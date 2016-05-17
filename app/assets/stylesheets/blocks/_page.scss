@@ -81,6 +81,10 @@
     height: 4px;
     background-color: $brand1;
   }
+
+  &--small::after {
+    width: 120px
+  }
 }
 
 .module-box__right {

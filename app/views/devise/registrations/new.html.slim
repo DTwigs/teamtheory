@@ -2,26 +2,34 @@
   .module-box.module-box--bordered
     .module-box__header.module-box__header--small
       h2.module-box__title.module-box__title--small
-        | Log in
+        | Sign up
     .module-box__body
 
-      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+        = devise_error_messages!
+
         .form-group
           = f.label :email, class: 'label-text label-text--dark'
           = f.email_field :email, autofocus: true, class: 'input'
 
+
         .form-group
           = f.label :password, class: 'label-text label-text--dark'
+
           = f.password_field :password, autocomplete: "off", class: 'input'
-
-        .inline-block
-          - if devise_mapping.rememberable?
-            .form-group
-              = f.check_box :remember_me
-              = f.label :remember_me
+          - if @minimum_password_length
+            em
+              = @minimum_password_length
+              span< characters minimum
 
 
-          = f.submit "Log in", class: 'button button--cta'
+        .form-group
+          = f.label :password_confirmation, class: 'label-text label-text--dark'
+          = f.password_field :password_confirmation, autocomplete: "off", class: 'input'
+
+
+        .inline-block.form-group
+          = f.submit "Sign up", class: 'button button--cta'
 
         .push-right.text-right.inline-block
           = render "devise/shared/links"

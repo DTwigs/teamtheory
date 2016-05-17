@@ -25,6 +25,8 @@ gem 'react-rails'
 gem 'momentjs-rails'
 gem "slim-rails"
 
+gem 'bourbon'
+
 gem 'devise'
 gem 'cancan'
 gem 'omniauth'

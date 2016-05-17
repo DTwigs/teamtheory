@@ -1,0 +1,15 @@
+.form-group {
+  margin-bottom: 14px;
+}
+
+.input {
+  width: 100%;
+  height: 36px;
+  padding: 8px 12px;
+  font-size: 14px;
+  background-color: white;
+  border: 1px solid $greyscale-7;
+  @include appearance(none);
+  outline: none;
+  border-radius: 2px;
+}

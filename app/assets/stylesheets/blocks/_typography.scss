@@ -6,4 +6,18 @@
   text-transform: uppercase;
   font-weight: 700;
   color: $greyscale-7;
+
+  &--dark {
+    color: $greyscale-1;
+  }
+}
+
+.devise-links {
+  margin-top: 10px;
+}
+
+.devise-link {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 13px;
 }
