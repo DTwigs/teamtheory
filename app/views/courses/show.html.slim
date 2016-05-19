@@ -23,8 +23,4 @@
   .module-box.module-box--bordered
     .module-box__header.module-box__header--small.text-center
       | Video Contents
-    = react_component('VideoBookmarks', {bookmarks: JSON.parse(@bookmarks), types: JSON.parse(@bookmarkTypes)});
-
-= content_for :js_lower do
-  javascript:
-    TT.videoPlayer.init("#{@video.youtube_id}");
+    = react_component('VideoBookmarks', {bookmarks: JSON.parse(@bookmarks), types: JSON.parse(@bookmarkTypes), youtubeId: @video.youtube_id});

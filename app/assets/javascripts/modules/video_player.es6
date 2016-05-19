@@ -1,6 +1,7 @@
 TT.videoPlayer = (function() {
   const TIMECHANGE_EVENT = 'tt:videoplayer:timechange_event';
   let youtubeId = "";
+  let startTime;
 
   function init(yid) {
     youtubeId = yid;
@@ -27,6 +28,11 @@ TT.videoPlayer = (function() {
 
   function _onPlayerReady(event) {
     event.target.playVideo();
+
+    if (startTime) {
+      setVideoTime(startTime);
+      startTime = undefined;
+    }
   }
 
   var done = false;
@@ -62,8 +68,12 @@ TT.videoPlayer = (function() {
   }
 
   function setVideoTime(seconds) {
-    player.seekTo(seconds);
-    $(document).trigger(getEventName(seconds));
+    if (player) {
+      player.seekTo(seconds);
+      $(document).trigger(getEventName(seconds));
+    } else {
+      startTime = seconds;
+    }
   }
 
   return {

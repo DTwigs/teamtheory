@@ -18,5 +18,6 @@
 
 
 //= require 'base.js'
+//= require 'utils.js'
 //= require components
 //= require_tree './modules'

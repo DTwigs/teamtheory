@@ -3,6 +3,7 @@
 class VideoBookmarks extends React.Component {
   constructor (props) {
     super(props);
+    TT.videoPlayer.init(this.props.youtubeId);
     videoBookmarksStore.init(this.props.bookmarks, this.props.types);
     this.state = this.getBookmarksState();
   }
@@ -217,6 +218,8 @@ var videoBookmarksStore = (function () {
     bookmarks.forEach(create);
     _createTypesObject(bookmarkTypes);
     $(document).on(TT.videoPlayer.TIMECHANGE_EVENT, findClosestBookmark);
+
+    _checkForStartTime()
   }
 
   let create = function(bookmark) {
@@ -246,7 +249,13 @@ var videoBookmarksStore = (function () {
     _inactivateAllBookmarks();
     _activeBookmark = _bookmarks[event.data.id];
     _activeBookmark.active = true;
+    TT.Utils.setQueryStringParameter('time', _bookmarks[event.data.id].time);
     _emitChange();
+  }
+
+  let _checkForStartTime = function() {
+    let startTime = TT.Utils.getQueryStringParameter('time');
+    if (startTime) TT.videoPlayer.setVideoTime(startTime);
   }
 
   let _createTypesObject = function(types) {
