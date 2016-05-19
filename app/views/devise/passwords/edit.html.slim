@@ -1,0 +1,28 @@
+.content-small
+  .module-box.module-box--bordered
+    .module-box__header.module-box__header--small
+      h2.module-box__title.module-box__title--small
+        | Change your password
+    .module-box__body
+      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+        = devise_error_messages!
+
+        = f.hidden_field :reset_password_token
+
+        .form-group
+          = f.label :password, "New password", class: 'label-text label-text--dark'
+          = f.password_field :password, autofocus: true, autocomplete: "off", class: 'input'
+          - if @minimum_password_length
+            = @minimum_password_length
+            span< characters minimum
+
+        .form-group
+          = f.label :password_confirmation, "Confirm new password", class: 'label-text label-text--dark'
+          = f.password_field :password_confirmation, autocomplete: "off", class: 'input'
+
+        .inline-block.form-group
+          = f.submit "Change my password", class: 'button button--cta'
+
+        .push-right.text-right.inline-block
+          = render "devise/shared/links"
+
