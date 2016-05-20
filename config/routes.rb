@@ -8,6 +8,10 @@ Rails.application.routes.draw do
 
   resources :courses
 
+  namespace :admin do
+    root to: 'home#index'
+  end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
