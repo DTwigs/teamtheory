@@ -10,7 +10,7 @@ class Ability
     elsif user.role.identifier == "admin"
       can :manage, :all
     else
-      can :read, Videos
+      can :read, :all
     end
 
   end
