@@ -2,9 +2,9 @@ class Role < ActiveRecord::Base
   has_many :users
 
   ROLES = {
-    superuser: Role.find_by_identifier('superuser').id,
-    admin: Role.find_by_identifier('admin').id,
-    community_user: Role.find_by_identifier('community_user').id
+    superuser: 1,
+    admin: 2,
+    community_user: 3
   }
 
   def superuser?
