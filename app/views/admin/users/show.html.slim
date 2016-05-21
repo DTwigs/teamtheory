@@ -1,0 +1,45 @@
+section.content-header
+  h1
+    | User:
+    span< = @user.email
+section.content
+  .row
+    .col-sm-6.col-xs-12
+      div class="box box-primary"
+        div class="box-body box-profile"
+
+          h3 class="profile-username text-center"
+            = @user.name.present? ? @user.name : @user.email
+
+          p class="text-muted text-center"
+            = @user.active? ? 'Is Active' : 'Deactivated'
+
+          ul class="list-group list-group-unbordered"
+            li class="list-group-item"
+              b Email
+              a class="pull-right" = @user.email
+            li class="list-group-item"
+              b Created At
+              a class="pull-right" = @user.created_at.localtime.strftime('%m/%d/%y %H:%M %Z')
+            li class="list-group-item"
+              b Last Logged In
+              a class="pull-right" = @user.last_sign_in_at.localtime.strftime('%m/%d/%y %H:%M %Z')
+            li class="list-group-item"
+              b Confirmed?
+              a class="pull-right"
+                - if @user.confirmed?
+                  .text-green Confirmed
+                - if !@user.confirmed?
+                  .text-red Unconfirmed
+
+          = form_for @user, url: admin_user_path(@user) do |f|
+            .checkbox
+              label
+                = f.check_box :is_active
+                | Is Active
+            p class="help-block"
+              | Unchecking the above box will deactivate the user preventing them from signing in.
+
+
+            div class="box-footer"
+              button type="submit" class="btn btn-primary" Submit

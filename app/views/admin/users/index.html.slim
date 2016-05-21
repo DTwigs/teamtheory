@@ -57,9 +57,9 @@ section.content
                     td = u.created_at.localtime.strftime('%m/%d/%y %H:%M %Z')
                     td = u.last_sign_in_at.localtime.strftime('%m/%d/%y %H:%M %Z')
                     td
-                      - if u.confirmed_at.present?
+                      - if u.confirmed?
                         .text-green Confirmed
-                      - if !u.confirmed_at.present?
+                      - if !u.confirmed?
                         .text-red Unconfirmed
 
 

@@ -11,8 +11,12 @@ class User < ActiveRecord::Base
 
   scope :confirmed, -> { where.not(confirmed_at: nil) }
 
-  def confirmed
+  def confirmed?
     self.confirmed_at.present?
+  end
+
+  def active?
+    self.is_active == true
   end
 
   #this method is called by devise to check for "active" state of the model
