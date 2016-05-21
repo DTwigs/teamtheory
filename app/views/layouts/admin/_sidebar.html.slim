@@ -6,9 +6,9 @@ aside class="main-sidebar"
     / Sidebar user panel (optional)
     div class="user-panel"
       div class="pull-left image"
-        img src="/assets/images/admin/user2-160x160.jpg" class="img-circle" alt="User Image"
+        i.fa.fa-user.sidebar-icon
       div class="pull-left info"
-        p Alexander Pierce
+        p = current_user.email
         a href="#"
           i class="fa fa-circle text-success"
            | Online
@@ -28,9 +28,9 @@ aside class="main-sidebar"
         | HEADER
       / Optionally, you can add icons to the links
       li class="active"
-        a href="#"
-          i class="fa fa-link"
-          span Link
+        a href="/admin/users"
+          i class="fa fa-user"
+          span Users
       li
         a href="#"
           i class="fa fa-link"

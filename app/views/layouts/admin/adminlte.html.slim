@@ -16,7 +16,12 @@ html
     = render 'layouts/admin/sidebar'
 
     div class="content-wrapper"
+      = render 'layouts/admin/aside'
       = yield
+
+    = render 'layouts/admin/footer'
 
 
     = javascript_include_tag 'admin'
+
+    = yield :js_lower

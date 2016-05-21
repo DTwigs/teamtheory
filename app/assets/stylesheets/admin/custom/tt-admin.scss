@@ -1,0 +1,15 @@
+.sidebar-icon {
+  color: white;
+  margin-left: 20px;
+  font-size: 20px;
+  position: relative;
+  top: 2px;
+}
+
+.clickable-row {
+  cursor: pointer;
+
+  &:hover {
+    color: #00c0ef;
+  }
+}

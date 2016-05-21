@@ -1,0 +1,73 @@
+
+section.content-header
+  h1
+    | All Users
+section.content
+  .row
+    .col-sm-4.col-md-4.col-xs-12
+      .info-box
+        span class="info-box-icon bg-aqua"
+          i class="fa fa-user"
+        div class="info-box-content"
+          span class="info-box-text" User Accounts
+          span class="info-box-number" = @users.count
+    .col-sm-4.col-md-4.col-xs-12
+      .info-box
+        span class="info-box-icon bg-green"
+          i class="fa fa-user"
+        div class="info-box-content"
+          span class="info-box-text" Confirmed Accounts
+          span class="info-box-number" = @users.confirmed.count
+
+    .col-sm-4.col-md-4.col-xs-12
+      .info-box
+        span class="info-box-icon bg-red"
+          i class="fa fa-user"
+        div class="info-box-content"
+          span class="info-box-text" UnConfirmed Accounts
+          span class="info-box-number" = @users.count - @users.confirmed.count
+
+
+  .box
+    .box-header.with-border
+      h3.box-title All Users by recent
+
+    .box-body
+      div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap"
+        div class="row"
+          div class="col-sm-12"
+            table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info"
+              thead
+                tr role="row"
+                  th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" style="width: 50px;" User ID
+                  th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" style="width: 50px;" Active?
+                  th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 202px;" Email
+                  th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 202px;" Name
+                  th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 179px;" Created Date
+                  th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 140px;" Last Login Date
+                  th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 180px;" Confirmed Account
+
+                - @users.each do |u|
+
+                  tr role="row" class="odd" class='clickable-row' data-href='/admin/users/#{u.id}'
+                    td class="sorting_1" = u.id
+                    td = u.is_active
+                    td = u.email
+                    td = u.name
+                    td = u.created_at.localtime.strftime('%m/%d/%y %H:%M %Z')
+                    td = u.last_sign_in_at.localtime.strftime('%m/%d/%y %H:%M %Z')
+                    td
+                      - if u.confirmed_at.present?
+                        .text-green Confirmed
+                      - if !u.confirmed_at.present?
+                        .text-red Unconfirmed
+
+
+
+= content_for :js_lower do
+  javascript:
+    jQuery(document).ready(function($) {
+      $(".clickable-row").click(function() {
+        window.document.location = $(this).data("href");
+      });
+    });
