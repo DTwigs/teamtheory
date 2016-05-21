@@ -2,10 +2,10 @@ class AdminController < ApplicationController
   before_action :authorize_admin
 
   def index
-    
+
   end
 
-  private 
+  private
   def authorize_admin
     unless admin?
       redirect_to root_path

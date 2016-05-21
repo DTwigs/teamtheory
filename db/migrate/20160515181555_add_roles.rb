@@ -6,6 +6,6 @@ class AddRoles < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_column :users, :role_id, :integer
+    add_column :users, :role_id, :integer, null: false, default: 3
   end
 end
