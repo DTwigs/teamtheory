@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   resources :courses
 
-  resources :admin, :only => [:index]
+  namespace :admin do
+    root to: 'home#index'
+  end
 
 end

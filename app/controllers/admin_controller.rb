@@ -1,15 +1,12 @@
 class AdminController < ApplicationController
+  layout 'admin/adminlte'
+
   before_action :authorize_admin
-
-  def index
-
-  end
 
   private
   def authorize_admin
     unless admin?
       redirect_to root_path
-      flash[:notice] = "You are not an admin"
     end
   end
 
