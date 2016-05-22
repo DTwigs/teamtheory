@@ -1,0 +1,36 @@
+
+section.content-header
+  h1
+    | Maps
+section.content
+  .row
+    .col-sm-6.col-xs-12
+      .box
+        .box-header.with-border
+          h3.box-title All Maps
+
+        .box-body
+          div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap"
+            div class="row"
+              div class="col-sm-12"
+                table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info"
+                  thead
+                    tr role="row"
+                      th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" style="width: 50px;" Map ID
+                      th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" style="width: 100px;" Map Name
+
+                    - @maps.each do |m|
+
+                      tr role="row" class="odd" class='clickable-row' data-href='/admin/videos/#{m.id}'
+                        td class="sorting_1" = m.id
+                        td = m.name
+
+
+
+= content_for :js_lower do
+  javascript:
+    jQuery(document).ready(function($) {
+      $(".clickable-row").click(function() {
+        window.document.location = $(this).data("href");
+      });
+    });

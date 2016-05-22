@@ -1,0 +1,42 @@
+
+section.content-header
+  h1
+    | Videos
+section.content
+  .box
+    .box-header.with-border
+      h3.box-title All Videos
+
+    .box-body
+      div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap"
+        div class="row"
+          div class="col-sm-12"
+            table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info"
+              thead
+                tr role="row"
+                  th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" style="width: 50px;" Video ID
+                  th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" style="width: 100px;" Title
+                  th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 202px;" Description
+                  th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 50px;" Duration
+                  th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 100px;" Youtube ID
+                  th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 140px;" Instructor
+
+                - @videos.each do |v|
+
+                  tr role="row" class="odd" class='clickable-row' data-href='/admin/videos/#{v.id}'
+                    td class="sorting_1" = v.id
+                    td = v.title
+                    td = v.description
+                    td = v.duration
+                    td = v.youtube_id
+                    td = v.instructor.name
+
+
+
+= content_for :js_lower do
+  javascript:
+    jQuery(document).ready(function($) {
+      $(".clickable-row").click(function() {
+        window.document.location = $(this).data("href");
+      });
+    });

@@ -11,6 +11,7 @@ class AdminController < ApplicationController
   end
 
   def admin?
+    return false if !current_user.present?
     current_user.role.admin?
   end
 
